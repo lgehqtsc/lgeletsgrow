@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>러닝센터 시설안내</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lg-red: #A50034;
+    --lg-red-dark: #7a0025;
+    --lg-red-deeper: #4d0017;
+    --lg-red-light: #cc0040;
+    --accent: #A50034;
+    --accent-bright: #ff1a5e;
+    --red: #A50034;
+    --red-light: #cc0040;
+    --navy: #1a1a1a;
+    --navy-mid: #2a2a2a;
+    --blue: #A50034;
+    --white: #ffffff;
+    --off-white: rgb(240, 236, 228);
+    --gray: #999999;
+    --gray-light: #e0e0e0;
+    --text: #1a1a1a;
+    --content-max: 1100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #ffffff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-bottom: 3px solid var(--lg-red);
+  }
+
+  .header-top {
+    padding: 14px 40px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .header-top-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:35px;
+    color: var(--lg-red);
+    letter-spacing: 3px;
+  }
+  .logo span {
+    color: #1a1a1a;
+  }
+
+  .header-subtitle {
+    font-size:16px;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV TABS ── */
+  nav {
+    background: #ffffff;
+  }
+
+  .nav-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 40px;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #888;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .tab-btn:hover {
+    color: var(--lg-red);
+    background: rgba(165,0,52,0.04);
+  }
+
+  .tab-btn.active {
+    color: var(--lg-red);
+    border-bottom-color: var(--lg-red);
+    background: rgba(165,0,52,0.06);
+    font-weight: 700;
+  }
+
+  .tab-btn .tab-icon {
+    display: block;
+    font-size:21px;
+    margin-bottom: 4px;
+  }
+
+  /* ── CONTENT AREA ── */
+  .content-area {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .tab-content.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-size:35px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--lg-red);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title .icon {
+    font-size:40px;
+  }
+
+  .sub-section {
+    margin-bottom: 36px;
+  }
+
+  .sub-title {
+    font-size:20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    background: var(--lg-red);
+    color: var(--white);
+    border-left: 4px solid var(--lg-red-dark);
+    border-radius: 0 4px 4px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(10,22,40,0.08);
+    border: 1px solid var(--gray-light);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(10,22,40,0.12);
+  }
+
+  /* ── NOTICE BADGE ── */
+  @keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  /* ── AMENITY CARDS ── */
+  .amenity-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(10,22,40,0.07);
+    border: 1px solid var(--gray-light);
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+
+  .amenity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(165,0,52,0.15);
+    border-color: var(--lg-red);
+  }
+
+  /* ── NOTICE TAB STYLES ── */
+  .tab-notice.active {
+    color: var(--lg-red) !important;
+    border-bottom-color: var(--lg-red) !important;
+    background: rgba(165,0,52,0.06) !important;
+  }
+  .tab-notice {
+    color: #cc3366 !important;
+  }
+
+  /* ── NOTICE CONTENT ── */
+  .notice-page-header {
+    background: linear-gradient(135deg, var(--lg-red) 0%, var(--lg-red-deeper) 100%);
+    border-radius: 10px;
+    padding: 28px 36px 24px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(165,0,52,0.25);
+  }
+  .notice-page-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 20px,
+      rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 40px
+    );
+  }
+  .notice-page-header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    font-size:15px;
+    font-weight: 900;
+    padding: 5px 14px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    animation: pulse-badge 2s ease-in-out infinite;
+  }
+  .notice-page-header h2 {
+    font-size:30px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  .notice-page-header p {
+    font-size:17px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 6px;
+    position: relative;
+  }
+
+  .notice-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .ncard {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 2px 10px rgba(10,22,40,0.07);
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .ncard:hover {
+    box-shadow: 0 6px 20px rgba(10,22,40,0.13);
+    transform: translateY(-2px);
+  }
+
+  .ncard-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: #1a1a1a;
+  }
+
+  .ncard-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:28px;
+    flex-shrink: 0;
+  }
+
+  .ncard-title {
+    font-size:16px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .ncard-subtitle {
+    font-size:13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  .ncard-body {
+    padding: 14px 18px;
+  }
+  .ncard-body p {
+    font-size:14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .ncard-ban {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff0f4;
+    border: 1px solid #ffb3c6;
+    color: var(--lg-red);
+    font-size:12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .ncard-warn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #444;
+    font-size:12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  /* ── EMERGENCY BOX ── */
+  .emergency-box {
+    background: linear-gradient(135deg, var(--lg-red) 0%, var(--lg-red-deeper) 100%);
+    border-radius: 12px;
+    padding: 28px 36px;
+    text-align: center;
+    margin-top: 8px;
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow: 0 4px 24px rgba(165,0,52,0.3);
+  }
+  .emergency-label {
+    font-size:30px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .emergency-desc {
+    font-size:19px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 14px;
+  }
+  .emergency-number {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:68px;
+    color: #fff;
+    letter-spacing: 4px;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .emergency-number:hover { color: #ffccdd; }
+  .emergency-number span { color: #ffccdd; }
+
+  /* ── STEP BOX (교육사전준비) ── */
+  .step-box {
+    background: #f7f7f7;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .step-num {
+    color: #a50034;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1140px) {
+    .nav-inner {
+      padding: 0 20px;
+    }
+    .header-top {
+      padding: 12px 20px;
+    }
+    .content-area {
+      padding: 24px 20px 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner {
+      padding: 0 4px;
+    }
+    .header-top {
+      padding: 12px 16px;
+    }
+    .content-area { padding: 20px 16px 60px; }
+    .section-title { font-size:28px; }
+    .tab-btn { min-width: 100px; font-size:13px; padding: 10px 8px; }
+    .access-inout-grid { grid-template-columns: 1fr !important; }
+    .checkin-grid { grid-template-columns: 1fr !important; }
+    .meal-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="header-top-inner">
+      <div>
+        <div class="logo">LEARNING <span>CENTER</span></div>
+        <div class="header-subtitle">안전수칙 및 생활안내</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <nav id="tabNav">
+    <div class="nav-inner">
+      <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
+        <span class="tab-icon">🚨</span>[필독] 안전수칙
+      </button>
+      <button class="tab-btn" onclick="showTab('prep', this)">
+        <span class="tab-icon">📋</span>교육사전준비
+      </button>
+      <button class="tab-btn" onclick="showTab('access', this)">
+        <span class="tab-icon">🗺️</span>오시는 길
+      </button>
+      <button class="tab-btn" onclick="showTab('stay', this)">
+        <span class="tab-icon">🏨</span>숙박안내
+      </button>
+      <button class="tab-btn" onclick="showTab('amenity', this)">
+        <span class="tab-icon">🏪</span>편의시설 안내
+      </button>
+      <button class="tab-btn" onclick="showTab('map', this)">
+        <span class="tab-icon">🏢</span>건물배치도
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ━━━ CONTENT ━━━ -->
+<div class="content-area">
+
+  <!-- ════════════════════════════════════════
+       TAB 0: 입소 유의사항 (안전수칙)
+       ════════════════════════════════════════ -->
+  <div id="tab-notice" class="tab-content active">
+
+    <div class="notice-page-header">
+      <div class="badge">⚠ MUST READ &nbsp;·&nbsp; 필독</div>
+      <h2>입소 유의사항</h2>
+      <p>교육참가 전 아래 사항을 반드시 숙지해 주시기 바랍니다.</p>
+    </div>
+
+    <div class="notice-cards-grid">
+
+      <!-- 음주 NO -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(192,57,43,0.25);">🚫</div>
+          <div>
+            <div class="ncard-title">음주 금지</div>
+            <div class="ncard-subtitle">교육 입소 시 · 교육 중 음주 · 외출 불가</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🚫 ALCOHOL NO</div>
+          <p>교육 <strong>입소 시 음주 상태로 입소 불가</strong>하며,<br>교육 기간 중 <strong>음주 및 외출이 불가</strong>합니다.<br><span style="color:var(--lg-red); font-weight:700;">※ 규정 위반 시 퇴소 및 보고 조치 됩니다.</span></p>
+        </div>
+      </div>
+
+      <!-- 흡연 NO -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(52,73,94,0.35);">🚭</div>
+          <div>
+            <div class="ncard-title">흡연 금지</div>
+            <div class="ncard-subtitle">사내 모든 시설 금연 구역</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🚭 SMOKING NO</div>
+          <p>사내 <strong>모든 시설은 금연 구역</strong>입니다.<br>지정된 장소에서만 흡연이 가능합니다.</p>
+        </div>
+      </div>
+
+      <!-- 음식물 반입 NO -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(230,126,34,0.25);">🍱</div>
+          <div>
+            <div class="ncard-title">음식물 반입 금지</div>
+            <div class="ncard-subtitle">외부 음식물 반입 제한</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🍱 FOOD NO</div>
+          <p>외부 음식물 반입이 <strong>제한</strong>됩니다.<br>단체 생활에 따른 <strong>식중독 예방</strong> 및 <strong>안전사고 방지</strong>를 위해 제한됩니다.</p>
+        </div>
+      </div>
+
+      <!-- 보행중 핸드폰 NO -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(41,128,185,0.25);">📵</div>
+          <div>
+            <div class="ncard-title">보행 중 핸드폰 사용 금지</div>
+            <div class="ncard-subtitle">안전보행</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">📵 PHONE WALKING NO</div>
+          <p>보행 중 핸드폰 사용은 <strong>금지</strong>됩니다.<br>반드시 <strong>자리에 멈춘 상태</strong>에서 사용하시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <!-- 비상대피로 확인 -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(39,174,96,0.25);">🚪</div>
+          <div>
+            <div class="ncard-title">비상대피로 위치 확인</div>
+            <div class="ncard-subtitle">비상 상황 사전 대비</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">✅ 사전 확인 필수</div>
+          <p>입소 후 반드시 <strong>비상대피로 위치를 확인</strong>하세요.<br>비상 상황 시 안전한 대피 장소로 <strong>신속하게 이동</strong>하시길 바랍니다.</p>
+        </div>
+      </div>
+
+      <!-- 안내방송 집중 -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(142,68,173,0.25);">📢</div>
+          <div>
+            <div class="ncard-title">비상 시 안내방송 집중</div>
+            <div class="ncard-subtitle">비상 상황 안내 준수</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">📢 방송 집중 필수</div>
+          <p>비상 상황 발생 시 <strong>안내방송에 집중</strong>하세요.<br>안내에 따라 <strong>침착하게 행동</strong>하시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <!-- 개인물품 관리 -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(22,160,133,0.25);">🎒</div>
+          <div>
+            <div class="ncard-title">개인 물품 관리</div>
+            <div class="ncard-subtitle">분실 · 파손 주의</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">🎒 본인 책임 관리</div>
+          <p>교육장 또는 숙소에서 <strong>개인 물품은 늘 소지</strong>하여 관리해 주시기 바랍니다.<br>분실 및 파손에 주의하세요.</p>
+        </div>
+      </div>
+
+      <!-- 위험요인 신고 -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(231,76,60,0.25);">⚡</div>
+          <div>
+            <div class="ncard-title">위험요인 신고</div>
+            <div class="ncard-subtitle">Safety Hotline 활용</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">⚡ 즉시 신고 요망</div>
+          <p>위험요인 발견 시 <strong>교육담당자</strong> 또는 <strong>Safety Hotline</strong>으로 즉시 신고해 주시기 바랍니다.</p>
+          <p style="margin-top:8px; font-size:14px; color: var(--lg-red); font-weight:700;">📱 [카카오 채널 검색] LG전자(평택) 안전 핫라인</p>
+        </div>
+      </div>
+
+    </div><!-- /notice-cards-grid -->
+
+    <!-- 넘어짐 사고 예방 -->
+    <div style="margin-bottom:28px;">
+      <div style="background:#f7f7f7; border-radius:10px; border:1px solid #e0e0e0; overflow:hidden;">
+        <div style="background:#1a1a1a; padding:16px 24px; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:28px;">⚠️</span>
+          <div>
+            <div style="font-size:17px; font-weight:900; color:#fff; letter-spacing:0.5px;">LG디지털파크 넘어짐 사고 예방</div>
+            <div style="font-size:14px; color:#aaa; margin-top:2px;">실제 발생 사고 사례 · 동종사고 예방대책</div>
+          </div>
+        </div>
+        <div style="padding:20px 24px;">
+          <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:2px; margin-bottom:12px;">📋 사고 사례</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:12px; margin-bottom:20px;">
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🍺</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">회식 후 귀가 중 넘어짐</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">2023.09.08</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                임직원이 부서 회식 후 음주하고 귀가하던 중 보행로에서 넘어져 <strong style="color:var(--lg-red);">앞니 2개 골절</strong>
+              </div>
+            </div>
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🩴</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">내리막길 보행 중 넘어짐</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">2023.09.04</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                협력사 직원이 크록스(슬리퍼)를 신고 내리막길 보행 중 <strong style="color:var(--lg-red);">왼쪽 발목 인대 파열</strong>
+              </div>
+            </div>
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🌧️</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">비 오는 날 뛰던 중 넘어짐</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">2023.08.28</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                임직원이 비 오는 날 샌들을 신고 뛰어가다 바짓자락에 걸려 <strong style="color:var(--lg-red);">오른쪽 발가락 골절</strong>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:700; color:#555; letter-spacing:2px; margin-bottom:10px;">✅ 동종사고 예방대책</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:8px;">
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🍷</span> 회식 중 과도한 음주 금지</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🩴</span> 슬리퍼 등 미끄러운 신발 착용 자제</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🌧️</span> 눈·비 오는 날 미끄럼 주의</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🤲</span> 주머니에 손 넣지 않고 걷기</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>📵</span> 보행 중 스마트폰 사용 금지</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🚶</span> 급하게 뛰지 않기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 응급상황 연락처 -->
+    <div class="emergency-box">
+      <div class="emergency-label">🚨 응급상황 발생 시 신고 접수</div>
+      <div class="emergency-desc">사업장 내 사고(비업무사고) 발생 시 <strong>1시간 내 반드시 신고</strong>되어야 합니다.</div>
+      <a href="tel:031-610-6119" class="emergency-number">031-610-<span>6119</span></a>
+    </div>
+
+  </div><!-- /tab-notice -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 1: 교육사전준비
+       ════════════════════════════════════════ -->
+  <div id="tab-prep" class="tab-content">
+    <div class="section-title"><span class="icon">📋</span>교육사전준비</div>
+
+    <!-- ① 출결 안내 -->
+    <div class="sub-section">
+      <div class="sub-title">
+        ① 출결 안내 · 비콘 출결준비
+        <span style="color:#ffb3c6; font-size:13px; font-weight:700; margin-left:6px;">필수</span>
+      </div>
+      <div class="card">
+        <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="font-size:40px;">💻</div>
+          <div style="flex:1; min-width:250px;">
+            <div style="font-size:16px; font-weight:900; margin-bottom:10px;">고용24 가입 및 어플 설치</div>
+            <div style="font-size:14px; line-height:1.8; margin-bottom:14px;">
+              교육참가 전 <strong>고용24 회원 가입 및 출결관리 어플</strong>을 다운로드 완료해주세요.
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div class="step-box">
+                <span class="step-num">①</span>
+                <strong>고용24</strong> (https://www.work24.go.kr) 개인회원 가입
+              </div>
+              <div class="step-box">
+                <span class="step-num">②</span>
+                회원가입 후 즉시 <strong>실명인증</strong> 진행
+              </div>
+              <div class="step-box">
+                <span class="step-num">③</span>
+                <strong>고용24 직업훈련 출결관리</strong> 어플 설치 후 로그인 확인
+              </div>
+            </div>
+
+            <!-- 비콘 안내 -->
+            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:20px;">
+              <div style="font-size:15px; font-weight:800; margin-bottom:10px;">📡 교육당일 비콘(Beacon) 출결 안내</div>
+              <div style="font-size:14px; line-height:1.8; margin-bottom:10px;">
+                교육장 입·퇴실 시 <strong>고용24 직업훈련 출결관리</strong> 어플을 통해 반드시 입실·퇴실 체크를 해주세요.
+              </div>
+              <div class="step-box">
+                <span class="step-num">①</span>
+                어플 실행 후 <strong>비콘 출결</strong> 클릭
+              </div>
+              <div class="step-box">
+                <span class="step-num">②</span>
+                <strong>입실(퇴실)</strong> 버튼 클릭
+              </div>
+              <div class="step-box">
+                <span class="step-num">③</span>
+                입실(퇴실) 시간 확인 후 어플 종료
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 교육참가 확인서 -->
+    <div class="sub-section">
+      <div class="sub-title">② 교육참가 확인서 출력</div>
+      <div class="card">
+        <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
+          <div style="font-size:40px; flex-shrink:0;">📄</div>
+          <div style="flex:1;">
+            <div style="font-size:16px; font-weight:900; color:var(--navy); margin-bottom:8px;">교육참가 확인서</div>
+            <div style="font-size:14px; color:#444; line-height:1.8;">
+              정문·서문 Gate 통과 시 <strong>교육참가 확인서</strong>를 지참해야 합니다.<br>
+              아래 버튼을 클릭하여 정보를 입력한 후 PDF로 출력해 주세요.
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <a href="https://lgehqtsc.github.io/lgeletsgrow/trainee/" target="_blank"
+            style="background:var(--lg-red); color:#fff; border:none; border-radius:6px; padding:14px 32px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Noto Sans KR',sans-serif; display:inline-flex; align-items:center; gap:8px; letter-spacing:0.3px; text-decoration:none;">
+            🖨️ 교육참가 확인서 출력하기
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-prep -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 2: 오시는 길
+       ════════════════════════════════════════ -->
+  <div id="tab-access" class="tab-content">
+    <div class="section-title"><span class="icon">🗺️</span>러닝센터 오시는 길</div>
+
+    <!-- 오시는 방법 -->
+    <div class="sub-section">
+      <div class="sub-title">오시는 방법</div>
+
+      <!-- 주소 -->
+      <div class="card" style="margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:26px;">📍</span>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:2px; margin-bottom:4px;">주 소</div>
+            <div style="font-size:18px; font-weight:700; color:var(--text);">경기도 평택시 진위면 엘지로 222 LG디지털파크</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대중교통 -->
+      <div class="card" style="margin-bottom:16px;">
+        <div style="font-size:15px; font-weight:900; color:var(--lg-red); letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+          🚌 대중교통오후 4:08 2026-08-04
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <div style="min-width:32px; height:32px; background:var(--lg-red); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; flex-shrink:0;">1</div>
+            <div style="flex:1; display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;">
+              <div style="flex:1; min-width:160px;">
+                <div style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:3px;">셔틀버스</div>
+                <div style="font-size:15px; color:#555; line-height:1.7;">오산역 1번 출구 홍약국 앞 탑승, 교육참가확인서 지참</div>
+                <div style="display:inline-block; margin-top:5px; background:#fff0f4; border:1px solid #ffb3c6; color:var(--lg-red); font-size:13px; font-weight:700; padding:3px 10px; border-radius:20px;">※ 06:40~07:35 · 10분 간격 배차</div>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #f0f0f0; padding-top:14px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="min-width:32px; height:32px; background:var(--lg-red); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; flex-shrink:0;">2</div>
+            <div>
+              <div style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:3px;">시내버스</div>
+              <div style="font-size:15px; color:#555; line-height:1.7;">오산역 또는 오산 시외버스터미널 앞 탑승<br>LG디지털파크 행 시내버스 이용</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #f0f0f0; padding-top:14px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="min-width:32px; height:32px; background:var(--lg-red); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; flex-shrink:0;">3</div>
+            <div>
+              <div style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:3px;">택시</div>
+              <div style="font-size:15px; color:#555; line-height:1.7;">오산역 또는 오산 시외버스터미널 앞 탑승 (약 15분 이내)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 자가용 -->
+      <div class="card">
+        <div style="font-size:15px; font-weight:900; color:var(--lg-red); letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+          🚗 자가용
+        </div>
+        <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:14px;">
+          <span style="font-size:24px;">🧭</span>
+          <div>
+            <div style="font-size:16px; font-weight:700; color:var(--text); margin-bottom:3px;">네비게이션 검색</div>
+            <div style="font-size:17px; font-weight:900; color:var(--lg-red);">LG디지털파크 서문</div>
+          </div>
+        </div>
+        <div style="background:#f7f7f7; border-left:3px solid var(--lg-red); border-radius:0 6px 6px 0; padding:12px 16px; font-size:15px; color:#444; line-height:1.8;">
+          LG디지털파크 내부 주차 불가하며, <strong>외부 서문 주차장</strong>을 이용해 주시길 바랍니다.<br>
+          <span style="color:var(--lg-red); font-weight:700;">※ 주차공간 부족으로 가급적 대중교통 또는 셔틀버스 이용</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 출입 안내 -->
+    <div class="sub-section">
+      <div class="sub-title">출입 안내</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;" class="access-inout-grid">
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="background:var(--lg-red); color:#fff; font-size:14px; font-weight:900; padding:5px 14px; border-radius:3px; letter-spacing:1px;">입 소</div>
+          </div>
+          <div style="font-size:15px; color:#444; line-height:1.9;">참가 안내문에 안내된 건물<br>지정 강의실 입소</div>
+          <div style="margin-top:10px; background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 12px; font-size:14px; color:var(--lg-red); line-height:1.8;">
+            ※ 정/서문 Gate에서 <strong>ID 카드 태깅</strong> 후 통과<br>(교육 참가 확인서 지참)
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="background:#1a1a1a; color:#fff; font-size:14px; font-weight:900; padding:5px 14px; border-radius:3px; letter-spacing:1px;">퇴 소</div>
+          </div>
+          <div style="font-size:15px; color:#444; line-height:1.9;">보안 Packing 확인<br>정/서문 고객안내실 확인</div>
+          <div style="margin-top:10px; background:#f5f5f5; border:1px solid #ddd; border-radius:6px; padding:10px 12px; font-size:14px; color:#555; line-height:1.8;">
+            ※ 정/서문 Gate 보안 관련 문의<br><strong style="color:var(--lg-red);">031-610-5259</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:15px; font-weight:900; color:var(--lg-red); letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+          🕐 LG디지털파크 출입문 운영 시간
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+          <div style="background:#f7f7f7; border-radius:8px; padding:16px; border-top:3px solid var(--lg-red);">
+            <div style="font-size:14px; font-weight:700; color:var(--lg-red); margin-bottom:6px;">정 문</div>
+            <div style="font-size:17px; font-weight:900; color:var(--text);">24시간 운영</div>
+            <div style="font-size:13px; color:#888; margin-top:3px;">기존 동일</div>
+          </div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:16px; border-top:3px solid #555;">
+            <div style="font-size:14px; font-weight:700; color:#555; margin-bottom:6px;">서 문</div>
+            <div style="font-size:17px; font-weight:900; color:var(--text);">06 ~ 22시</div>
+            <div style="font-size:13px; color:var(--lg-red); font-weight:700; margin-top:3px;">주말/공휴일 19~22시 / 심야 미운영</div>
+          </div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:16px; border-top:3px solid #555;">
+            <div style="font-size:14px; font-weight:700; color:#555; margin-bottom:6px;">동 문</div>
+            <div style="font-size:17px; font-weight:900; color:var(--text);">06 ~ 22시</div>
+            <div style="font-size:13px; color:#888; margin-top:3px;"><span style="color:var(--lg-red); font-weight:700;">주말/공휴일 및 심야 미운영</span></div>
+          </div>
+        </div>
+        <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:14px 16px; font-size:15px; color:#444; line-height:1.9;">
+          ※ <strong style="color:var(--lg-red);">주말/공휴일 서문 게이트</strong>는 러닝센터 사전입소자에 한하여 입장만 가능합니다.<br>
+          입소 후 외출하시는 경우 <strong>정문을 이용</strong>해 주시길 바랍니다.<br>
+          <span style="color:#888;">(임직원 ID카드 소지 또는 외출증 지참)</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tab-access -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 3: 숙박안내
+       ════════════════════════════════════════ -->
+  <div id="tab-stay" class="tab-content">
+    <div class="section-title"><span class="icon">🏨</span>숙박안내</div>
+
+    <!-- 입실안내 -->
+    <div class="sub-section">
+      <div class="sub-title">입실안내</div>
+      <div class="card">
+        <div style="background:#f7f7f7; border-radius:8px; padding:16px 18px; margin-bottom:12px; display:flex; gap:12px; align-items:flex-start;">
+          <span style="font-size:26px; flex-shrink:0;">📱</span>
+          <div style="font-size:15px; color:#444; line-height:1.8;">
+            숙박 신청자에 한하여 입소 당일 <strong style="color:var(--lg-red);">오후 3시 이후</strong> 문자 메시지로<br>
+            사용 숙소 호실 및 출입 Code 발송 <span style="color:#888; font-size:14px;">(발신번호 : 070-4333-1047)</span>
+          </div>
+        </div>
+        <div style="margin-bottom:12px; background:#f7f7f7; border-left:3px solid var(--lg-red); border-radius:0 6px 6px 0; padding:12px 16px; font-size:14px; color:#444; line-height:1.7;">
+          숙소는 <strong>1인 1실</strong>로 배정됩니다. <span style="color:var(--lg-red); font-weight:700;">※ 상황에 따라 2인 1실로 배정될 수 있습니다.</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;" class="checkin-grid">
+          <div style="border-radius:8px; overflow:hidden; border:1px solid #ffb3c6;">
+            <div style="background:var(--lg-red); color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; text-align:center;">CHECK-IN</div>
+            <div style="background:#fff0f4; padding:14px 16px;">
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="background:var(--lg-red); color:#fff; font-size:12px; font-weight:700; padding:2px 8px; border-radius:3px; white-space:nowrap;">사전입소</span>
+                  <span style="color:#333; font-size:14px;">오후 7시 이후</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="background:#555; color:#fff; font-size:12px; font-weight:700; padding:2px 8px; border-radius:3px; white-space:nowrap;">당일입소</span>
+                  <span style="color:#333; font-size:14px;">교육 종료 후</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid #e0e0e0;">
+            <div style="background:#1a1a1a; color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; text-align:center;">CHECK-OUT</div>
+            <div style="background:#f7f7f7; padding:14px 16px;">
+              <span style="color:#333; font-size:14px;">교육 종료일 <strong>오전 9시까지</strong></span>
+              <div style="margin-top:10px; background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:8px 12px; font-size:13px; color:var(--lg-red); font-weight:600; line-height:1.6;">
+                ※ 퇴실 시 반드시 개인 짐을 모두 챙겨나와 주시기 바랍니다.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 구비물품 -->
+    <div class="sub-section">
+      <div class="sub-title">구비물품</div>
+      <div class="card">
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap:10px; margin-bottom:16px;">
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🛁</div><div style="font-size:14px; font-weight:700; color:var(--text);">수건</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">💇</div><div style="font-size:14px; font-weight:700; color:var(--text);">헤어드라이기</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🧴</div><div style="font-size:14px; font-weight:700; color:var(--text);">샴푸 · 린스</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🚿</div><div style="font-size:14px; font-weight:700; color:var(--text);">바디워시 · 비누</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🫧</div><div style="font-size:14px; font-weight:700; color:var(--text);">세탁기 (공용)</div></div>
+        </div>
+        <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:#555;">
+          ※ 기타 물품은 필요에 따라 지참하시기 바랍니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 문의사항 -->
+    <div class="sub-section">
+      <div class="sub-title">문의사항</div>
+      <div class="card">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+          <div style="background:#f7f7f7; border-radius:8px; padding:18px 20px; border-top:3px solid var(--lg-red); text-align:center;">
+            <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1.5px; margin-bottom:8px;">🏠 숙소 관련</div>
+            <a href="tel:031-8074-5500" style="font-size:24px; font-weight:900; color:var(--text); text-decoration:none; letter-spacing:1px;">031-8074-5500</a>
+          </div>
+          <div style="background:#1a1a1a; border-radius:8px; padding:18px 20px; border-top:3px solid var(--lg-red); text-align:center;">
+            <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1.5px; margin-bottom:8px;">🚨 응급상황</div>
+            <a href="tel:031-610-6119" style="font-size:24px; font-weight:900; color:#ffffff; text-decoration:none; letter-spacing:1px;">031-610-6119</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tab-stay -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 4: 편의시설 안내
+       ════════════════════════════════════════ -->
+  <div id="tab-amenity" class="tab-content">
+    <div class="section-title"><span class="icon">🏪</span>편의시설 안내</div>
+
+    <!-- 식당 -->
+    <div class="sub-section">
+      <div class="sub-title">🍽️ 식당</div>
+      <div class="card" style="border:2px solid var(--lg-red); border-radius:10px; padding:0; overflow:hidden;">
+        <div style="background:var(--lg-red); padding:18px 24px; display:flex; align-items:center; gap:14px;">
+          <span style="font-size:34px;">🍽️</span>
+          <div>
+            <div style="font-size:22px; font-weight:900; color:#fff; letter-spacing:1px;">HOUSE 1958</div>
+            <div style="font-size:14px; color:rgba(255,255,255,0.75); margin-top:2px;">구내식당</div>
+          </div>
+        </div>
+        <div style="padding:20px 24px;">
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;" class="meal-grid">
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">조 식</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">06:50 ~ 07:50</div>
+            </div>
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">중 식</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">12:00 ~ 13:00</div>
+            </div>
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">석 식</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">17:00 ~ 18:00</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:var(--lg-red); line-height:1.8;">
+              ※ 중식 시간은 각 교육마다 상이하오니, <strong>교육 시간표를 반드시 확인</strong>해 주세요.
+            </div>
+            <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:var(--lg-red); line-height:1.8;">
+              ※ 식당 이용 시 반드시 <strong>명찰 패용</strong>, ID Card 리더기는 <strong>PASS</strong>
+            </div>
+          </div>
+          <div style="margin-top:14px; text-align:center;">
+            <button onclick="document.getElementById('routeModal').style.display='flex'"
+              style="background:var(--lg-red); color:#fff; border:none; border-radius:6px; padding:12px 24px; font-size:16px; font-weight:700; cursor:pointer; font-family:'Noto Sans KR',sans-serif; display:inline-flex; align-items:center; gap:8px; letter-spacing:0.3px;">
+              🗺️ 식당 이동경로 확인하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 나머지 편의시설 -->
+    <div class="sub-section">
+      <div class="sub-title">편의시설</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:16px;">
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🛒</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">편의점</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">채움관 1층</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;"><div>🕐 <strong>07:00 ~ 19:00</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ 19:00 이후 무인 이용 가능</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">☕</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">아지트 카페</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">채움관 1층</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;"><div>🕐 <strong>08:30 ~ 06:30</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ Break Time : 11:00 ~ 12:00</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🏋️</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">피트니스센터</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">채움관 12층</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;"><div>🕐 <strong>06:00 ~ 08:00</strong></div><div>🕐 <strong>12:00 ~ 13:30</strong></div><div>🕐 <strong>17:00 ~ 22:00</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ 개인운동화 · 러닝화 · 수건 지참 필수</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">ℹ️</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">안내데스크</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">채움관 2층 · 나눔관 1층</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;">상시 문의 가능</div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555; line-height:1.8;">상비약 · 휴대폰 충전 · 복사 등 필요한 사항이 있으실 경우 안내데스크에 문의</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🚬</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">흡연구역</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">지정 장소 외 흡연 금지</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;">
+            <div>📍 채움관 옥상 <span style="color:#888; font-size:14px;">(생산기술원 방향)</span></div>
+            <div>📍 이음관 옥상 <span style="color:#888; font-size:14px;">(E/V 방향)</span></div>
+            <div>📍 나눔관 옥상 <span style="color:#888; font-size:14px;">(E/V 방향)</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:0; border:1px solid #ffb3c6;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🏥</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">부속의원</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">LG디지털파크 Y동 1층</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;"><div>🕐 <strong>08:00 ~ 17:00</strong></div><div style="color:#888; font-size:14px;">중식시간 11:30 ~ 12:30</div></div>
+          <div style="margin-top:10px; background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 12px; font-size:14px; color:var(--lg-red); line-height:1.9;">
+            ※ 운영시간 외 응급상황 발생 시 통합관제센터로 연락<br>
+            <strong>(응급구조사 24시간 상주)</strong><br>
+            📞 <a href="tel:031-610-6119" style="color:var(--lg-red); font-weight:900; text-decoration:none;">031-610-6119</a>
+            &nbsp;|&nbsp; 📍 Y동 1층 통합관제센터
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /tab-amenity -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 5: 건물배치도
+       ════════════════════════════════════════ -->
+  <div id="tab-map" class="tab-content">
+    <div class="section-title"><span class="icon">🏢</span>러닝센터 건물배치도</div>
+    <div style="background:#fff; border-radius:8px; overflow:hidden; border:1px solid var(--gray-light); box-shadow:0 2px 12px rgba(10,22,40,0.08);">
+      <img src="IMG_5537.jpeg" alt="건물배치도" style="width:100%; display:block;">
+    </div>
+  </div>
+
+</div><!-- /content-area -->
+
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+</script>
+
+
+<!-- ════════ 식당 이동경로 모달 ════════ -->
+<div id="routeModal" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:#fff; border-radius:12px; max-width:700px; width:100%; max-height:90vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 8px 40px rgba(0,0,0,0.4);">
+    <div style="background:var(--lg-red); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0;">
+      <div style="font-size:16px; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">🗺️ 식당 이동경로 안내</div>
+      <button onclick="document.getElementById('routeModal').style.display='none'"
+        style="background:rgba(255,255,255,0.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">✕</button>
+    </div>
+    <div style="overflow-y:auto; flex:1;">
+      <img src="IMG_5538.jpeg" alt="식당이동경로" style="width:100%; display:block;">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
