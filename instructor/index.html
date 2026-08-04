@@ -100,12 +100,15 @@ body{
 
 .page-wrap{
     display:flex;
-    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
 }
 
 .certificate{
     width:210mm;
     height:297mm;
+    flex:0 0 auto;
     background:#fff;
     box-shadow:0 2px 14px rgba(0,0,0,.15);
     display:flex;
@@ -137,6 +140,18 @@ body{
 .info-table{
     width:100%;
     border-collapse:collapse;
+}
+
+.certificate.page2{
+    align-items:center;
+    justify-content:center;
+    padding:0;
+}
+
+.page2-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 .info-table th{
@@ -234,6 +249,11 @@ body{
     .certificate{
         box-shadow:none;
         margin:0;
+        page-break-after:always;
+    }
+
+    .certificate:last-child{
+        page-break-after:auto;
     }
 
     @page{
@@ -302,7 +322,7 @@ body{
 
 </div>
 
-<div class="page-wrap">
+<div class="page-wrap" id="pdfContent">
 <div class="certificate" id="certificate">
 
 <div class="header">
@@ -372,11 +392,16 @@ body{
 
 <div class="address">
 주소 : 경기 평택시 진위면 엘지로 222 LG전자 디지털파크 서문
-</div>
+</div></div>
 
 </div>
 
+<div class="certificate page2" id="certificatePage2">
+<img class="page2-img" crossorigin="anonymous"
+src="https://raw.githubusercontent.com/lgehqtsc/lgehqtsc/refs/heads/main/IMG_5537.jpeg"
+alt="첨부 이미지">
 </div>
+
 </div>
 
 <script>
@@ -413,7 +438,7 @@ function savePDF(){
 
     applyData();
 
-    const element = document.getElementById('certificate');
+    const element = document.getElementById('pdfContent');
 
     const opt = {
 
@@ -438,6 +463,10 @@ function savePDF(){
             unit: 'mm',
             format: 'a4',
             orientation: 'portrait'
+        },
+
+        pagebreak: {
+            mode: ['css']
         }
 
     };
@@ -448,9 +477,9 @@ function savePDF(){
     .toPdf()
     .get('pdf')
     .then(function(pdf){
-        // 빈 2페이지가 생성된 경우 삭제하여 항상 1페이지만 남김
+        // 의도한 2페이지를 초과하는 빈 페이지가 생성된 경우에만 삭제
         const totalPages = pdf.internal.getNumberOfPages();
-        for(let i = totalPages; i > 1; i--){
+        for(let i = totalPages; i > 2; i--){
             pdf.deletePage(i);
         }
     })
