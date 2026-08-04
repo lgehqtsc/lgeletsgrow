@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>러닝센터 시설안내</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   :root {
     --lg-red: #A50034;
@@ -415,6 +416,220 @@
     flex-shrink: 0;
   }
 
+  /* ── 교육참가 확인서 위젯 ── */
+  .cert-input-area{
+    background:#ffffff;
+    padding:24px 28px;
+    border-radius:12px;
+    margin:0 auto 24px;
+    width:210mm;
+    max-width:100%;
+    box-shadow:0 2px 10px rgba(0,0,0,.10);
+    box-sizing:border-box;
+  }
+  .cert-input-area h3{
+    margin:0 0 18px;
+    font-size:17px;
+    color:#a50034;
+    border-left:5px solid #a50034;
+    padding-left:10px;
+  }
+  .cert-input-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px 18px;
+  }
+  .cert-input-row{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .cert-input-row.wide{
+    grid-column:span 2;
+  }
+  .cert-input-row label{
+    font-size:13px;
+    font-weight:700;
+    color:#555;
+  }
+  .cert-input-row input,
+  .cert-input-row select{
+    width:100%;
+    padding:9px 10px;
+    font-size:14px;
+    border:1px solid #d5d5d5;
+    border-radius:6px;
+    background:#fafafa;
+    font-family:'Noto Sans KR',sans-serif;
+    color:#333;
+  }
+  .cert-input-row input:focus,
+  .cert-input-row select:focus{
+    outline:none;
+    border-color:#a50034;
+    background:#fff;
+  }
+  .cert-btn-row{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .cert-btn-row button{
+    border:none;
+    color:#fff;
+    padding:12px 22px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
+    font-family:'Noto Sans KR',sans-serif;
+    transition:opacity .15s;
+  }
+  .cert-btn-row button:hover{ opacity:.88; }
+  #cert_btnPdf{ background:#16a34a; }
+  #cert_btnPrint{ background:#ea580c; }
+  #cert_btnReset{ background:#6b7280; }
+
+  .cert-page-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+  }
+  .cert-certificate{
+    width:210mm;
+    min-height:297mm;
+    max-width:100%;
+    background:#fff;
+    box-shadow:0 2px 14px rgba(0,0,0,.15);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-sizing:border-box;
+  }
+  .cert-header{
+    flex:0 0 auto;
+    text-align:center;
+    padding:24mm 0 12mm;
+  }
+  .cert-header .cert-main-title{
+    font-size:40px;
+    font-weight:900;
+    letter-spacing:6px;
+    color:#222;
+  }
+  .cert-body-wrap{
+    flex:1 1 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 16mm;
+  }
+  .cert-info-table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .cert-info-table th{
+    width:30%;
+    background:#f6f2ef;
+    color:#444;
+    border:1px solid #ddd;
+    padding:16px 18px;
+    font-size:16px;
+    font-weight:700;
+    text-align:center;
+  }
+  .cert-info-table td{
+    border:1px solid #ddd;
+    padding:16px 18px;
+    font-size:16px;
+    background:#ffffff;
+    color:#222;
+  }
+  .cert-confirm-line{
+    flex:0 0 auto;
+    text-align:center;
+    padding:6mm 16mm 0;
+    font-size:16px;
+    font-weight:700;
+    color:#333;
+  }
+  .cert-sign-line{
+    flex:0 0 auto;
+    text-align:center;
+    padding:10mm 16mm 8mm;
+    font-size:24px;
+    font-weight:700;
+    color:#333;
+  }
+  .cert-footer{
+    flex:0 0 33%;
+    background:#f6f2ef;
+    color:#333;
+    padding:12mm 16mm;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .cert-footer-title{
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:14px;
+    letter-spacing:1px;
+    color:#a50034;
+  }
+  .cert-footer ul{
+    margin:0 0 16px;
+    padding-left:20px;
+    line-height:2;
+    font-size:14px;
+  }
+  .cert-footer ul li{ color:#444; }
+  .cert-address{
+    font-size:13px;
+    color:#666;
+    border-top:1px solid rgba(0,0,0,.15);
+    padding-top:12px;
+  }
+  .cert-certificate.cert-page2{
+    align-items:center;
+    justify-content:center;
+    padding:0;
+  }
+  .cert-page2-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  @media print {
+    header, nav { display:none !important; }
+    .content-area { padding:0 !important; max-width:none !important; margin:0 !important; }
+    #tab-prep .section-title,
+    .cert-input-area { display:none !important; }
+    .cert-page-wrap { display:block !important; }
+    .cert-certificate {
+      box-shadow:none;
+      margin:0 auto;
+      page-break-after:always;
+      width:210mm;
+      height:297mm;
+    }
+    .cert-certificate:last-child { page-break-after:auto; }
+    @page { size:A4; margin:0; }
+  }
+
+  @media (max-width:900px){
+    .cert-input-grid{ grid-template-columns:1fr 1fr; }
+    .cert-input-row.wide{ grid-column:span 2; }
+  }
+  @media (max-width:600px){
+    .cert-input-grid{ grid-template-columns:1fr; }
+    .cert-input-row.wide{ grid-column:span 1; }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1140px) {
     .nav-inner {
@@ -464,7 +679,7 @@
         <span class="tab-icon">🚨</span>[필독] 안전수칙
       </button>
       <button class="tab-btn" onclick="showTab('prep', this)">
-        <span class="tab-icon">📋</span>교육사전준비
+        <span class="tab-icon">📄</span>교육참가 확인서
       </button>
       <button class="tab-btn" onclick="showTab('access', this)">
         <span class="tab-icon">🗺️</span>오시는 길
@@ -695,84 +910,84 @@
 
 
   <!-- ════════════════════════════════════════
-       TAB 1: 교육사전준비
+       TAB 1: 교육참가 확인서
        ════════════════════════════════════════ -->
   <div id="tab-prep" class="tab-content">
-    <div class="section-title"><span class="icon">📋</span>교육사전준비</div>
+    <div class="section-title"><span class="icon">📄</span>교육참가 확인서</div>
 
-    <!-- ① 출결 안내 -->
-    <div class="sub-section">
-      <div class="sub-title">
-        ① 출결 안내 · 비콘 출결준비
-        <span style="color:#ffb3c6; font-size:13px; font-weight:700; margin-left:6px;">필수</span>
-      </div>
-      <div class="card">
-        <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
-          <div style="font-size:40px;">💻</div>
-          <div style="flex:1; min-width:250px;">
-            <div style="font-size:16px; font-weight:900; margin-bottom:10px;">고용24 가입 및 어플 설치</div>
-            <div style="font-size:14px; line-height:1.8; margin-bottom:14px;">
-              교육참가 전 <strong>고용24 회원 가입 및 출결관리 어플</strong>을 다운로드 완료해주세요.
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div class="step-box">
-                <span class="step-num">①</span>
-                <strong>고용24</strong> (https://www.work24.go.kr) 개인회원 가입
-              </div>
-              <div class="step-box">
-                <span class="step-num">②</span>
-                회원가입 후 즉시 <strong>실명인증</strong> 진행
-              </div>
-              <div class="step-box">
-                <span class="step-num">③</span>
-                <strong>고용24 직업훈련 출결관리</strong> 어플 설치 후 로그인 확인
-              </div>
-            </div>
-
-            <!-- 비콘 안내 -->
-            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:20px;">
-              <div style="font-size:15px; font-weight:800; margin-bottom:10px;">📡 교육당일 비콘(Beacon) 출결 안내</div>
-              <div style="font-size:14px; line-height:1.8; margin-bottom:10px;">
-                교육장 입·퇴실 시 <strong>고용24 직업훈련 출결관리</strong> 어플을 통해 반드시 입실·퇴실 체크를 해주세요.
-              </div>
-              <div class="step-box">
-                <span class="step-num">①</span>
-                어플 실행 후 <strong>비콘 출결</strong> 클릭
-              </div>
-              <div class="step-box">
-                <span class="step-num">②</span>
-                <strong>입실(퇴실)</strong> 버튼 클릭
-              </div>
-              <div class="step-box">
-                <span class="step-num">③</span>
-                입실(퇴실) 시간 확인 후 어플 종료
-              </div>
-            </div>
-          </div>
+    <div class="cert-input-area">
+      <h3>교육참가 확인서 입력</h3>
+      <div class="cert-input-grid">
+        <div class="cert-input-row">
+          <label>성명</label>
+          <input type="text" id="cert_name" oninput="applyCertData()">
         </div>
+        <div class="cert-input-row">
+          <label>연락처</label>
+          <input type="text" id="cert_phone" oninput="applyCertData()">
+        </div>
+        <div class="cert-input-row wide">
+          <label>교육기간</label>
+          <select id="cert_lectureDate" onchange="applyCertData()">
+            <option>교육기간 선택</option>
+            <option>2026-08-18(화) ~ 2026-08-21(금)</option>
+            <option>2026-08-24(월) ~ 2026-08-28(금) </option>
+          </select>
+        </div>
+        <div class="cert-input-row wide">
+          <label>지역담당자 및 연락처</label>
+          <select id="cert_manager" onchange="applyCertData()">
+            <option>담당자 선택</option>
+            <option>[대전] 한진수 (010-2428-1844)</option>
+            <option>[대구] 김나영 (010-3087-2028)</option>
+            <option>[부산] 조운지 (010-8997-1812)</option>
+          </select>
+        </div>
+      </div>
+      <div class="cert-btn-row">
+        <button id="cert_btnPdf" onclick="saveCertPDF()">PDF 저장하기</button>
+        <button id="cert_btnPrint" onclick="printCertData()">출력하기</button>
+        <button id="cert_btnReset" onclick="resetCertForm()">초기화</button>
       </div>
     </div>
 
-    <!-- ② 교육참가 확인서 -->
-    <div class="sub-section">
-      <div class="sub-title">② 교육참가 확인서 출력</div>
-      <div class="card">
-        <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
-          <div style="font-size:40px; flex-shrink:0;">📄</div>
-          <div style="flex:1;">
-            <div style="font-size:16px; font-weight:900; color:var(--navy); margin-bottom:8px;">교육참가 확인서</div>
-            <div style="font-size:14px; color:#444; line-height:1.8;">
-              정문·서문 Gate 통과 시 <strong>교육참가 확인서</strong>를 지참해야 합니다.<br>
-              아래 버튼을 클릭하여 정보를 입력한 후 PDF로 출력해 주세요.
-            </div>
-          </div>
+    <div class="cert-page-wrap" id="cert_pdfContent">
+      <div class="cert-certificate" id="cert_certificate">
+
+        <div class="cert-header">
+          <div class="cert-main-title">K-뉴딜 교육참가확인서</div>
         </div>
-        <div style="text-align:center;">
-          <a href="https://lgehqtsc.github.io/lgeletsgrow/trainee/" target="_blank"
-            style="background:var(--lg-red); color:#fff; border:none; border-radius:6px; padding:14px 32px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Noto Sans KR',sans-serif; display:inline-flex; align-items:center; gap:8px; letter-spacing:0.3px; text-decoration:none;">
-            🖨️ 교육참가 확인서 출력하기
-          </a>
+
+        <div class="cert-body-wrap">
+          <table class="cert-info-table">
+            <tr><th>성 명</th><td id="cert_pName"></td></tr>
+            <tr><th>연락처</th><td id="cert_pPhone"></td></tr>
+            <tr><th>과정명</th><td>K-뉴딜 아카데미</td></tr>
+            <tr><th>교육기간</th><td id="cert_pLectureDate"></td></tr>
+            <tr><th>장 소</th><td>러닝센터 이음관</td></tr>
+            <tr><th>지역담당자 및 연락처</th><td id="cert_pManager"></td></tr>
+          </table>
         </div>
+
+        <div class="cert-confirm-line">러닝센터에서 운영하는 교육과정 참석자임을 확인합니다.</div>
+        <div class="cert-sign-line">Employee eXperience 담당</div>
+
+        <div class="cert-footer">
+          <div class="cert-footer-title">출입 Process</div>
+          <ul>
+            <li>배차 차량 탑승 교육생도 반드시 출력 후 지참</li>
+            <li>차량은 서문 Gate 앞 주차장에 주차 후 입소</li>
+            <li>교육참가 확인서 출력 후 서문 Gate 제출/확인</li>
+          </ul>
+          <div class="cert-address">주소 : 경기 평택시 진위면 엘지로 222 LG전자 디지털파크 서문</div>
+        </div>
+
+      </div>
+
+      <div class="cert-certificate cert-page2" id="cert_certificatePage2">
+        <img class="cert-page2-img" crossorigin="anonymous"
+          src="https://raw.githubusercontent.com/lgehqtsc/lgehqtsc/refs/heads/main/IMG_5537.jpeg"
+          alt="첨부 이미지">
       </div>
     </div>
 
@@ -803,7 +1018,7 @@
       <!-- 대중교통 -->
       <div class="card" style="margin-bottom:16px;">
         <div style="font-size:15px; font-weight:900; color:var(--lg-red); letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
-          🚌 대중교통오후 4:08 2026-08-04
+          🚌 대중교통
         </div>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div style="display:flex; gap:14px; align-items:flex-start;">
@@ -1118,6 +1333,59 @@
     btn.classList.add('active');
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
+</script>
+
+<!-- ════════ 교육참가 확인서 스크립트 ════════ -->
+<script>
+  function applyCertData(){
+    document.getElementById('cert_pName').innerText = document.getElementById('cert_name').value;
+    document.getElementById('cert_pPhone').innerText = document.getElementById('cert_phone').value;
+    document.getElementById('cert_pLectureDate').innerText = document.getElementById('cert_lectureDate').value;
+    document.getElementById('cert_pManager').innerText = document.getElementById('cert_manager').value;
+  }
+
+  function printCertData(){
+    applyCertData();
+    window.print();
+  }
+
+  function saveCertPDF(){
+    applyCertData();
+
+    const element = document.getElementById('cert_pdfContent');
+
+    const opt = {
+      margin: 0,
+      filename: '[LG전자]K-뉴딜_교육참가확인서_' + (document.getElementById('cert_name').value || '무제') + '.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css'] }
+    };
+
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .toPdf()
+      .get('pdf')
+      .then(function(pdf){
+        const totalPages = pdf.internal.getNumberOfPages();
+        for (let i = totalPages; i > 2; i--) {
+          pdf.deletePage(i);
+        }
+      })
+      .save();
+  }
+
+  function resetCertForm(){
+    document.getElementById('cert_name').value = '';
+    document.getElementById('cert_phone').value = '';
+    document.getElementById('cert_lectureDate').selectedIndex = 0;
+    document.getElementById('cert_manager').selectedIndex = 0;
+    applyCertData();
+  }
+
+  document.addEventListener('DOMContentLoaded', applyCertData);
 </script>
 
 
