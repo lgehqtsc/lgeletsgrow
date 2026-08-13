@@ -675,14 +675,11 @@
   <!-- TABS -->
   <nav id="tabNav">
     <div class="nav-inner">
-      <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
-        <span class="tab-icon">🚨</span>[필독] 안전수칙
+      <button class="tab-btn active" onclick="showTab('access', this)">
+        <span class="tab-icon">🗺️</span>방문 방법
       </button>
-      <button class="tab-btn" onclick="showTab('prep', this)">
-        <span class="tab-icon">📄</span>교육참가 확인서
-      </button>
-      <button class="tab-btn" onclick="showTab('access', this)">
-        <span class="tab-icon">🗺️</span>오시는 길
+      <button class="tab-btn" onclick="showTab('map', this)">
+        <span class="tab-icon">🏢</span>건물배치도
       </button>
       <button class="tab-btn" onclick="showTab('stay', this)">
         <span class="tab-icon">🏨</span>숙박안내
@@ -690,8 +687,11 @@
       <button class="tab-btn" onclick="showTab('amenity', this)">
         <span class="tab-icon">🏪</span>편의시설 안내
       </button>
-      <button class="tab-btn" onclick="showTab('map', this)">
-        <span class="tab-icon">🏢</span>건물배치도
+      <button class="tab-btn" onclick="showTab('prep', this)">
+        <span class="tab-icon">📄</span>교육참가 확인서
+      </button>
+      <button class="tab-btn tab-notice" onclick="showTab('notice', this)">
+        <span class="tab-icon">🚨</span>[필독] 안전수칙
       </button>
     </div>
   </nav>
@@ -703,7 +703,7 @@
   <!-- ════════════════════════════════════════
        TAB 0: 입소 유의사항 (안전수칙)
        ════════════════════════════════════════ -->
-  <div id="tab-notice" class="tab-content active">
+  <div id="tab-notice" class="tab-content">
 
     <div class="notice-page-header">
       <div class="badge">⚠ MUST READ &nbsp;·&nbsp; 필독</div>
@@ -755,6 +755,21 @@
         <div class="ncard-body">
           <div class="ncard-ban">🍱 FOOD NO</div>
           <p>외부 음식물 반입이 <strong>제한</strong>됩니다.<br>단체 생활에 따른 <strong>식중독 예방</strong> 및 <strong>안전사고 방지</strong>를 위해 제한됩니다.</p>
+        </div>
+      </div>
+
+      <!-- 개인 저장매체/카메라 반입 NO -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(44,62,80,0.35);">📷</div>
+          <div>
+            <div class="ncard-title">개인 저장매체 · 카메라 반입 금지</div>
+            <div class="ncard-subtitle">보안 정책 준수</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">📷 DEVICE NO</div>
+          <p>개인 <strong>저장매체(USB 등)</strong> 및 <strong>카메라</strong>는 반입이 <strong>금지</strong>됩니다.<br>보안 정책에 따라 위반 시 제재될 수 있습니다.</p>
         </div>
       </div>
 
@@ -986,7 +1001,7 @@
 
       <div class="cert-certificate cert-page2" id="cert_certificatePage2">
         <img class="cert-page2-img" crossorigin="anonymous"
-          src="https://raw.githubusercontent.com/lgehqtsc/lgehqtsc/refs/heads/main/IMG_5537.jpeg"
+          src="https://raw.githubusercontent.com/lgehqtsc/lgeletsgrow/refs/heads/main/IMG_7400.png"
           alt="첨부 이미지">
       </div>
     </div>
@@ -997,7 +1012,7 @@
   <!-- ════════════════════════════════════════
        TAB 2: 오시는 길
        ════════════════════════════════════════ -->
-  <div id="tab-access" class="tab-content">
+  <div id="tab-access" class="tab-content active">
     <div class="section-title"><span class="icon">🗺️</span>러닝센터 오시는 길</div>
 
     <!-- 오시는 방법 -->
@@ -1316,7 +1331,7 @@
   <div id="tab-map" class="tab-content">
     <div class="section-title"><span class="icon">🏢</span>러닝센터 건물배치도</div>
     <div style="background:#fff; border-radius:8px; overflow:hidden; border:1px solid var(--gray-light); box-shadow:0 2px 12px rgba(10,22,40,0.08);">
-      <img src="https://raw.githubusercontent.com/lgehqtsc/lgehqtsc/refs/heads/main/IMG_5537.jpeg" alt="건물배치도" style="width:100%; display:block;">
+      <img src="https://raw.githubusercontent.com/lgehqtsc/lgeletsgrow/refs/heads/main/IMG_7400.png" alt="건물배치도" style="width:100%; display:block;">
     </div>
   </div>
 
