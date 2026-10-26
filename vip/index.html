@@ -280,7 +280,7 @@ body{
 </div>
 
 <div class="input-row">
-<label>사번(임직원만 입력)</label>
+<label>사번(사내강사만 입력)</label>
 <input type="text" id="empno" oninput="applyData()">
 </div>
 
@@ -411,7 +411,7 @@ function applyData(){
 
     document.getElementById('pDeptEmp').innerText =
     document.getElementById('dept').value +
-    '  ' +
+    ' / ' +
     document.getElementById('empno').value;
 
     document.getElementById('pName').innerText =
